@@ -13,7 +13,7 @@ export function ProjectsSection() {
         />
       </FadeInSection>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
         {projects.map((project, i) => (
           <FadeInSection key={project.slug} delay={i * 0.1}>
             <ProjectCard project={project} />

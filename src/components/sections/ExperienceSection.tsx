@@ -40,7 +40,7 @@ export function ExperienceSection() {
                   <ul className="space-y-1.5 text-sm text-muted-foreground mb-4">
                     {exp.description.map((bullet, j) => (
                       <li key={j} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                         {bullet}
                       </li>
                     ))}

@@ -67,10 +67,12 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+  -webkit-tap-highlight-color: transparent;
 }

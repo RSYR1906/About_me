@@ -128,6 +128,8 @@ const skillCategories = [
 /* ------------------------------------------------------------------ */
 /*  Components                                                         */
 /* ------------------------------------------------------------------ */
+/*  Shared Components                                                  */
+/* ------------------------------------------------------------------ */
 
 function SectionTitle({
   icon,
@@ -142,6 +144,48 @@ function SectionTitle({
         {icon}
       </div>
       <h2 className="text-xl font-bold tracking-tight">{children}</h2>
+    </div>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
+      {items.map((item, i) => (
+        <li key={i} className="flex items-start gap-2">
+          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ResumeCard({
+  title,
+  subtitle,
+  period,
+  bullets,
+}: {
+  title: string;
+  subtitle?: string;
+  period: string;
+  bullets: string[];
+}) {
+  return (
+    <div className="rounded-xl border bg-card p-5 sm:p-6">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
+        <div>
+          <h3 className="font-semibold">{title}</h3>
+          {subtitle && (
+            <p className="text-primary font-medium text-sm">{subtitle}</p>
+          )}
+        </div>
+        <span className="text-sm text-muted-foreground whitespace-nowrap">
+          {period}
+        </span>
+      </div>
+      <BulletList items={bullets} />
     </div>
   );
 }
@@ -164,7 +208,7 @@ export default function ResumePage() {
 
         {/* ---- Header ---- */}
         <header className="mt-6 mb-12">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
             Ryan Sim <span className="text-primary">Yao Rong</span>
           </h1>
           <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
@@ -196,7 +240,7 @@ export default function ResumePage() {
           <SectionTitle icon={<GraduationCap className="h-5 w-5" />}>
             Education
           </SectionTitle>
-          <div className="rounded-xl border bg-card p-6">
+          <div className="rounded-xl border bg-card p-5 sm:p-6">
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
               <h3 className="font-semibold">{education.school}</h3>
               <span className="text-sm text-muted-foreground whitespace-nowrap">
@@ -214,27 +258,13 @@ export default function ResumePage() {
           </SectionTitle>
           <div className="space-y-6">
             {workExperience.map((job) => (
-              <div key={job.role} className="rounded-xl border bg-card p-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
-                  <div>
-                    <h3 className="font-semibold">{job.role}</h3>
-                    <p className="text-primary font-medium text-sm">
-                      {job.company}
-                    </p>
-                  </div>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">
-                    {job.period}
-                  </span>
-                </div>
-                <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-                  {job.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ResumeCard
+                key={job.role}
+                title={job.role}
+                subtitle={job.company}
+                period={job.period}
+                bullets={job.bullets}
+              />
             ))}
           </div>
         </div>
@@ -246,22 +276,12 @@ export default function ResumePage() {
           </SectionTitle>
           <div className="space-y-6">
             {projects.map((proj) => (
-              <div key={proj.title} className="rounded-xl border bg-card p-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-1">
-                  <h3 className="font-semibold">{proj.title}</h3>
-                  <span className="text-sm text-muted-foreground whitespace-nowrap">
-                    {proj.period}
-                  </span>
-                </div>
-                <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground">
-                  {proj.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ResumeCard
+                key={proj.title}
+                title={proj.title}
+                period={proj.period}
+                bullets={proj.bullets}
+              />
             ))}
           </div>
         </div>
@@ -271,7 +291,7 @@ export default function ResumePage() {
           <SectionTitle icon={<Code2 className="h-5 w-5" />}>
             Skills
           </SectionTitle>
-          <div className="rounded-xl border bg-card p-6 space-y-5">
+          <div className="rounded-xl border bg-card p-5 sm:p-6 space-y-5">
             {skillCategories.map((cat) => (
               <div key={cat.label}>
                 <h3 className="text-sm font-semibold text-foreground mb-2">

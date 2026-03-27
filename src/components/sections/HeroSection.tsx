@@ -23,8 +23,8 @@ export function HeroSection() {
         aria-hidden
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
+        <div className="absolute -top-40 -right-40 h-150 w-150 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-125 w-125 rounded-full bg-primary/5 blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -33,7 +33,7 @@ export function HeroSection() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
-          className="mx-auto mb-8 h-32 w-32 rounded-full bg-gradient-to-br from-primary to-primary/50 ring-4 ring-primary/20 flex items-center justify-center text-primary-foreground text-4xl font-bold select-none"
+          className="mx-auto mb-8 h-32 w-32 rounded-full bg-linear-to-br from-primary to-primary/50 ring-4 ring-primary/20 flex items-center justify-center text-primary-foreground text-4xl font-bold select-none"
         >
           R
         </motion.div>
@@ -43,7 +43,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight"
+          className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight"
         >
           Hi, I&apos;m <span className="text-primary">Ryan</span>
         </motion.h1>
@@ -53,7 +53,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-4 text-2xl sm:text-3xl font-medium text-muted-foreground h-10"
+          className="mt-4 text-xl sm:text-2xl md:text-3xl font-medium text-muted-foreground min-h-10"
         >
           <TypewriterText strings={roles} />
         </motion.div>
@@ -75,7 +75,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-8 flex flex-wrap gap-4 justify-center"
+          className="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center"
         >
           <Button asChild size="lg">
             <a href="#projects">View My Work</a>

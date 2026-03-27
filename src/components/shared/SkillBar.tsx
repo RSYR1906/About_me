@@ -2,7 +2,6 @@
 
 import type { Skill } from "@/data/skills";
 import { motion } from "motion/react";
-import { useInView } from "react-intersection-observer";
 
 interface SkillBarProps {
   skill: Skill;
@@ -10,10 +9,8 @@ interface SkillBarProps {
 }
 
 export function SkillBar({ skill, delay = 0 }: SkillBarProps) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
-
   return (
-    <div ref={ref} className="space-y-1.5">
+    <div className="space-y-1.5">
       <div className="flex justify-between text-sm">
         <span className="font-medium">{skill.name}</span>
         <span className="text-muted-foreground">{skill.level}%</span>
@@ -22,7 +19,8 @@ export function SkillBar({ skill, delay = 0 }: SkillBarProps) {
         <motion.div
           className="h-2 rounded-full bg-primary"
           initial={{ width: 0 }}
-          animate={inView ? { width: `${skill.level}%` } : {}}
+          whileInView={{ width: `${skill.level}%` }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 1, ease: "easeOut", delay }}
         />
       </div>
