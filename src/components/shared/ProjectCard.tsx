@@ -1,5 +1,3 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import type { Project } from "@/data/projects";
 import { Code2, ExternalLink } from "lucide-react";
-import { motion } from "motion/react";
 
 interface ProjectCardProps {
   project: Project;
@@ -19,11 +16,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="h-full"
-    >
+    <div className="h-full transition-transform duration-300 hover:-translate-y-1.5">
       <Card className="h-full flex flex-col border bg-card hover:shadow-xl transition-shadow duration-300">
         <CardHeader>
           <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -67,6 +60,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
         </CardFooter>
       </Card>
-    </motion.div>
+    </div>
   );
 }

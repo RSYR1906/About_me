@@ -1,11 +1,8 @@
-"use client";
-
 import { FadeInSection } from "@/components/shared/FadeInSection";
 import { GitHubIcon, LinkedInIcon } from "@/components/shared/icons";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Mail, MapPin } from "lucide-react";
-import { motion } from "motion/react";
 
 const contactLinks = [
   {
@@ -77,11 +74,7 @@ export function ContactSection() {
 
         {/* Right: CTA card */}
         <FadeInSection delay={0.2}>
-          <motion.div
-            whileHover={{ scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            className="rounded-2xl border bg-card p-8 text-center space-y-4"
-          >
+          <div className="rounded-2xl border bg-card p-8 text-center space-y-4 transition-transform duration-200 hover:scale-[1.01]">
             <div className="text-4xl">👋</div>
             <h3 className="text-xl font-semibold">Let&apos;s work together</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -99,7 +92,7 @@ export function ContactSection() {
                 Connect on LinkedIn
               </a>
             </Button>
-          </motion.div>
+          </div>
         </FadeInSection>
       </div>
     </section>

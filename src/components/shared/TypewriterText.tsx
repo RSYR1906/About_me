@@ -9,41 +9,41 @@ interface TypewriterTextProps {
 
 export function TypewriterText({ strings, className }: TypewriterTextProps) {
   const [displayed, setDisplayed] = useState("");
-  const [stringIndex, setStringIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const state = useRef({ idx: 0, pos: 0, del: false });
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
-    const current = strings[stringIndex];
+    const tick = () => {
+      const { idx, pos, del } = state.current;
+      const word = strings[idx];
 
-    if (!deleting) {
-      if (charIndex < current.length) {
-        timeoutRef.current = setTimeout(() => {
-          setDisplayed(current.slice(0, charIndex + 1));
-          setCharIndex((c) => c + 1);
-        }, 65);
+      if (!del) {
+        if (pos < word.length) {
+          state.current.pos++;
+          setDisplayed(word.slice(0, state.current.pos));
+          timer.current = setTimeout(tick, 65);
+        } else {
+          timer.current = setTimeout(() => {
+            state.current.del = true;
+            tick();
+          }, 1800);
+        }
       } else {
-        timeoutRef.current = setTimeout(() => setDeleting(true), 1800);
+        if (pos > 0) {
+          state.current.pos--;
+          setDisplayed(word.slice(0, state.current.pos));
+          timer.current = setTimeout(tick, 35);
+        } else {
+          state.current.del = false;
+          state.current.idx = (idx + 1) % strings.length;
+          timer.current = setTimeout(tick, 400);
+        }
       }
-    } else {
-      if (charIndex > 0) {
-        timeoutRef.current = setTimeout(() => {
-          setDisplayed(current.slice(0, charIndex - 1));
-          setCharIndex((c) => c - 1);
-        }, 35);
-      } else {
-        timeoutRef.current = setTimeout(() => {
-          setDeleting(false);
-          setStringIndex((i) => (i + 1) % strings.length);
-        }, 400);
-      }
-    }
-
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [charIndex, deleting, stringIndex, strings]);
+
+    tick();
+    return () => clearTimeout(timer.current);
+  }, [strings]);
 
   return (
     <span className={className}>
