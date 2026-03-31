@@ -25,6 +25,22 @@ export const metadata: Metadata = {
   title: "Ryan Sim — Software Engineer",
   description:
     "Personal portfolio of Ryan Sim — Associate System Engineer at Visa. Building robust systems across software, infrastructure, and finance.",
+  icons: {
+    icon: "/favicon.svg",
+  },
+  openGraph: {
+    title: "Ryan Sim — Software Engineer",
+    description:
+      "Personal portfolio of Ryan Sim — Associate System Engineer at Visa. Building robust systems across software, infrastructure, and finance.",
+    siteName: "Ryan Sim",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Ryan Sim — Software Engineer",
+    description:
+      "Personal portfolio of Ryan Sim — Associate System Engineer at Visa.",
+  },
 };
 
 export default function RootLayout({

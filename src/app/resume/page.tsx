@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Briefcase,
   Code2,
+  Download,
   GraduationCap,
   Mail,
   MapPin,
@@ -231,6 +232,14 @@ export default function ResumePage() {
               rsim9977@gmail.com
             </a>
           </div>
+          <a
+            href="/Ryan_Resume_2026.pdf"
+            download
+            className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-primary hover:underline transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            Download PDF
+          </a>
         </header>
 
         <hr className="border-border mb-10" />

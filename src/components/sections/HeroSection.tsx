@@ -2,8 +2,9 @@
 
 import { TypewriterText } from "@/components/shared/TypewriterText";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, FileText, Mail } from "lucide-react";
+import { ArrowDown, Download, FileText, Mail } from "lucide-react";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 const roles = [
   "Associate System Engineer @ Visa",
@@ -18,13 +19,13 @@ export function HeroSection() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center pt-16"
     >
-      {/* Subtle gradient background blob */}
+      {/* Animated gradient background blobs */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div className="absolute -top-40 -right-40 h-150 w-150 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-125 w-125 rounded-full bg-primary/5 blur-3xl" />
+        <div className="hero-blob-1 absolute -top-40 -right-40 h-150 w-150 rounded-full bg-primary/10 blur-3xl" />
+        <div className="hero-blob-2 absolute -bottom-40 -left-40 h-125 w-125 rounded-full bg-primary/5 blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -33,9 +34,16 @@ export function HeroSection() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
-          className="mx-auto mb-8 h-32 w-32 rounded-full bg-linear-to-br from-primary to-primary/50 ring-4 ring-primary/20 flex items-center justify-center text-primary-foreground text-4xl font-bold select-none"
+          className="mx-auto mb-8 h-32 w-32 overflow-hidden rounded-full ring-4 ring-primary/20"
         >
-          R
+          <Image
+            src="/Picture of myself.jpg"
+            alt="Ryan Sim"
+            width={128}
+            height={128}
+            priority
+            className="h-full w-full object-cover"
+          />
         </motion.div>
 
         {/* Name */}
@@ -90,6 +98,12 @@ export function HeroSection() {
             <a href="/resume">
               <FileText className="mr-2 h-4 w-4" />
               Resume
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="ghost">
+            <a href="/Ryan_Resume_2026.pdf" download>
+              <Download className="mr-2 h-4 w-4" />
+              Download CV
             </a>
           </Button>
         </motion.div>
